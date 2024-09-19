@@ -1,11 +1,6 @@
 # Use a imagem oficial do Python como base
 FROM python:3.11-slim
 
-# Defina as variáveis de ambiente
-ENV DJANGO_SETTINGS_MODULE=ireApp.settings
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
 # Crie um diretório para a aplicação
 WORKDIR /app
 
@@ -15,10 +10,16 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
 # Copie o restante do código da aplicação
 COPY . .
 
+# Defina as variáveis de ambiente
+ENV DJANGO_SETTINGS_MODULE=ireApp.settings
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+
+RUN python manage.py collectstatic --noinput
 # Exponha a porta que a API usará
 EXPOSE 8000
 
