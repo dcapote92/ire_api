@@ -17,7 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+def index(request):
+    return HttpResponse("API is running")
+
+
 urlpatterns = [
+    path('', index),
     path('admin/', admin.site.urls),
     path('API/', include('API.urls'))
 ]
