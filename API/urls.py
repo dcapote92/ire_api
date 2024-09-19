@@ -3,7 +3,7 @@ from rest_framework import routers
 from API import views
 
 router = routers.DefaultRouter()
-router.register(r'center', views.CenterViewSet)
+router.register(r'centers', views.CenterViewSet)
 
 # REGISTRAR RUTA DE CADA VIEW
 router.register(r'users', views.UserViewSet)
