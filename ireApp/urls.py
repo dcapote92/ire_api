@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.http import HttpResponse  # Corrigida a importação
 
 def index(request):
     return HttpResponse("API is running")
 
-
 urlpatterns = [
-    path('', index),
+    path('', index),  # Rota para a raiz do site
     path('admin/', admin.site.urls),
-    path('API/', include('API.urls'))
+    path('API/', include('API.urls'))  # Certifique-se que o app 'API' tenha seu próprio urls.py
 ]
+
