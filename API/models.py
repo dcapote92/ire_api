@@ -7,44 +7,46 @@ class Center(models.Model):
     codename = models.CharField(max_length=2)
 
 class User(models.Model):
-    code = models.CharField(max_length=4, primary_key=True)
+    id = models.PositiveIntegerField(primary_key = True)
+    code = models.CharField(max_length=4)
     pin = models.CharField(max_length=4)
     pin_reset = models.BooleanField(default=1)
     role = models.CharField(max_length=30)
     group = models.CharField(max_length=3)
-    center_id = models.PositiveSmallIntegerField()
-    since = models.TimeField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
+    since = models.DateField()
     active = models.BooleanField(default=1)
+    user_device = models.CharField(max_length=10)
 
 class Bet(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     type = models.CharField(max_length=30)
     numbers = models.CharField(max_length=7)
     amount = models.FloatField()
-    user_code = models.CharField(max_length=4)
-    center_id = models.PositiveIntegerField()
+    user_id = models.ForeignKey(User, models.DO_NOTHING)
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
 class Winner(models.Model):
     id  = models.PositiveIntegerField(primary_key=True)
     date = models.DateField()
-    user_code = models.CharField(max_length=4)
+    user_id = models.ForeignKey(User, models.DO_NOTHING)
     numbers = models.CharField(max_length=7)
     bet_amount = models.FloatField()
     gained_amount = models.FloatField()
-    center_id = models.PositiveIntegerField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
 class Limit(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     type = models.CharField(max_length=30)
     amount = models.FloatField()
-    center_id = models.PositiveIntegerField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
-class Clasified(models.Model):
+class Classified(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
     type = models.CharField(max_length=30)
     charged_amount = models.FloatField()
     delayed_days = models.PositiveIntegerField()
-    center_id = models.PositiveIntegerField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
 class Schedule(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
@@ -52,7 +54,7 @@ class Schedule(models.Model):
     start_b = models.CharField(max_length=30)
     end_a = models.CharField(max_length=30)
     end_b = models.CharField(max_length=30)
-    center_id = models.PositiveIntegerField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
 class Throw(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
@@ -61,8 +63,8 @@ class Throw(models.Model):
     dinamic_a = models.CharField(max_length=2)
     dinamic_b = models.CharField(max_length=2)
     session = models.CharField(max_length=30)
-    created_at = models.DateTimeField()
-    center_id = models.PositiveIntegerField()
+    created_at = models.DateField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
 class Plan(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
@@ -77,6 +79,6 @@ class Plan(models.Model):
     limited_hundred = models.CharField(max_length=3)
     ball_list = models.FloatField()
     parle_list = models.FloatField()
-    center_id = models.PositiveIntegerField()
+    center_id = models.ForeignKey(Center, models.DO_NOTHING)
 
 

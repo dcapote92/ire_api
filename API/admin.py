@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Bet, Center, Clasified, Schedule, Limit, Plan, Throw, User, Winner
+from .models import *
 
 # Register your models here.
 admin.site.register(Bet)
 admin.site.register(Center)
-admin.site.register(Clasified)
+admin.site.register(Classified)
 admin.site.register(Schedule)
 admin.site.register(Limit)
 admin.site.register(Plan)

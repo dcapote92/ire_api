@@ -28,12 +28,12 @@ class LimitsSerializer(serializers.ModelSerializer):
         model = Limit
         fields = '__all__'
 
-class ClasifiedSerializer(serializers.ModelSerializer):
+class ClassifiedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Clasified
+        model = Classified
         fields = '__all__'
 
-class CheduleSerializer(serializers.ModelSerializer):
+class ScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schedule
         fields = '__all__'

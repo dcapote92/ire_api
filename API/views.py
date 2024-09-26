@@ -25,13 +25,13 @@ class LimitsViewSet(viewsets.ModelViewSet):
     queryset = Limit.objects.all()
     serializer_class = LimitsSerializer
 
-class ClasifiedViewSet(viewsets.ModelViewSet):
-    queryset = Clasified.objects.all()
-    serializer_class = ClasifiedSerializer
+class ClassifiedViewSet(viewsets.ModelViewSet):
+    queryset = Classified.objects.all()
+    serializer_class = ClassifiedSerializer
 
-class CheduleViewSet(viewsets.ModelViewSet):
+class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = Schedule.objects.all()
-    serializer_class = CheduleSerializer
+    serializer_class = ScheduleSerializer
 
 class ThrowViewSet(viewsets.ModelViewSet):
     queryset = Throw.objects.all()
